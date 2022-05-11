@@ -10,6 +10,7 @@ import {
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { db } from "../utils/firebase";
 import { useAuth } from "./AuthContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const ScheduleContext = createContext();
 
@@ -18,7 +19,7 @@ export const useSchedule = () => {
 };
 
 export function ScheduleProvider({ children }) {
-  const [schedules, setSchedules] = useState([]);
+  const [schedules, setSchedules] = useLocalStorage("attendance-schedule", []);
   const [schedulesCount, setSchedulesCount] = useState(0);
   const [error, setError] = useState("");
 
@@ -28,7 +29,7 @@ export function ScheduleProvider({ children }) {
     if (user) {                                                                                                                               
       const data = [];
 
-      const q = query(collection(db, "LAB-F1"), where("lab", "==", "LAB-F1"));
+      const q = query(collection(db, "SLA-16"), where("room", "==", "SLA-16"));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           data.push(doc.data());
@@ -50,7 +51,7 @@ export function ScheduleProvider({ children }) {
       await setDoc(
         doc(
           db,
-          reservation.lab,
+          reservation.room,
           `${reservation.date}-${
             reservation.start < 10 ? "0" + reservation.start : reservation.start
           }`
@@ -69,7 +70,7 @@ export function ScheduleProvider({ children }) {
       schedule.start < 10 ? "0" + schedule.start : schedule.start
     }`;
 
-    await deleteDoc(doc(db, schedule.lab, id))
+    await deleteDoc(doc(db, schedule.room, id))
       .then((res) => {
         errorMessage = "";
       })

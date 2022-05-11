@@ -32,7 +32,7 @@ function App() {
           mb={2}
           variant={smallScreen ? "h5" : "h4"}
         >
-          Reserva - Laboratório F1
+          Reserva - Sala de Atendimento
         </Typography>
         <Typography
           textAlign={"center"}
@@ -82,7 +82,7 @@ function App() {
         mb={3}
         variant={smallScreen ? "h4" : "h3"}
       >
-        Reserva - Laboratório F1
+        Reserva - Sala de Atendimento
       </Typography>
       <Box
         sx={{

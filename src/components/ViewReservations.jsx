@@ -27,6 +27,8 @@ const variants = {
 export default function ViewReservations() {
   const { schedules, schedulesCount } = useSchedule();
 
+  console.log(schedules);
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [reservations, setReservations] = useState([]);
 

@@ -7,7 +7,7 @@ import StaticDatePicker from "@mui/lab/StaticDatePicker";
 import { Box, Button, Snackbar, Alert, Typography } from "@mui/material";
 import { Temporal } from "@js-temporal/polyfill";
 import TimeSelect from "./TimeSelect";
-import LabSelect from "./LabSelect";
+// import LabSelect from "./LabSelect";
 import { PickersDay, pickersDayClasses } from "@mui/lab";
 import { useAuth } from "../contexts/AuthContext";
 import { useSchedule } from "../contexts/ScheduleContext";
@@ -102,9 +102,10 @@ export default function StaticDatePickerLandscape() {
         width: "100%",
         flexDirection: "column",
         alignItems: "center",
+        mt: 4
       }}
     >
-      <LabSelect />
+      {/* <LabSelect /> */}
       <LocalizationProvider dateAdapter={AdapterDateFns} locale={brLocale}>
         <Box
           minHeight={300}
