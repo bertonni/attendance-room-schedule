@@ -27,8 +27,6 @@ const variants = {
 export default function ViewReservations() {
   const { schedules, schedulesCount } = useSchedule();
 
-  console.log(schedules);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [reservations, setReservations] = useState([]);
 
@@ -37,8 +35,7 @@ export default function ViewReservations() {
   const smallScreen = (useMediaQuery(theme.breakpoints.down('sm')));
 
   const isNotAvailable = (date) => {
-    if (date.getDay() === 0) return true;
-    return false;
+    return date.getDay() === 0;
   };
 
   const getFormattedDate = (date) => {
@@ -54,7 +51,8 @@ export default function ViewReservations() {
       day: selectedDate.getDate(),
     }).toString();
 
-    const updatedData = schedules.filter((sched) => sched.date === formattedDate)
+    const updatedData = schedules.filter((sched) => sched.date === formattedDate);
+    console.log('reservations view', updatedData);
     setReservations(updatedData);
   }, [selectedDate, schedulesCount]);
 

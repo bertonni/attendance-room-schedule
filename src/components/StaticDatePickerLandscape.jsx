@@ -15,7 +15,7 @@ import { useSchedule } from "../contexts/ScheduleContext";
 export default function StaticDatePickerLandscape() {
   const [value, setValue] = useState(new Date());
   const [startTime, setStartTime] = useState("");
-  const [selectedLab] = useState("LAB-F1");
+  const [selectedRoom] = useState("SLA-16");
   const [endTime, setEndTime] = useState("");
   const [minDate, setMinDate] = useState(Temporal.Now.plainDateISO().add({ days: 2 }));
   const [maxDate] = useState(Temporal.Now.plainDateISO().add({ days: 14 }));
@@ -30,7 +30,7 @@ export default function StaticDatePickerLandscape() {
       name: user.displayName,
       email: user.email,
     },
-    lab: "",
+    room: "",
     date: "",
     start: "",
     end: "",
@@ -60,7 +60,7 @@ export default function StaticDatePickerLandscape() {
       day: value.getDate(),
     });
 
-    scheduling.lab = selectedLab;
+    scheduling.room = selectedRoom;
     scheduling.date = date.toString();
     scheduling.start = startTime;
     scheduling.end = endTime;
@@ -140,7 +140,7 @@ export default function StaticDatePickerLandscape() {
           />
         </Box>
         <TimeSelect
-          lab={selectedLab}
+          lab={selectedRoom}
           date={Temporal.PlainDate.from({
             year: value.getFullYear(),
             month: value.getMonth() + 1,
@@ -152,7 +152,7 @@ export default function StaticDatePickerLandscape() {
           setEndTime={setEndTime}
         />
         <Button
-          disabled={startTime === "" || endTime === "" || selectedLab === ""}
+          disabled={startTime === "" || endTime === "" || selectedRoom === ""}
           variant="contained"
           sx={{ my: 2 }}
           color="ifgreen"
@@ -169,7 +169,7 @@ export default function StaticDatePickerLandscape() {
       >
         <Alert severity="success" onClose={handleClose}>
           <Typography textAlign={"center"}>
-            Agendamento realizado para o laboratório <b>{scheduling.lab}</b> dia{" "}
+            Agendamento realizado para o dia{" "}
             <b>
               {getFormattedDate(
                 Temporal.PlainDate.from({

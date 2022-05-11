@@ -29,12 +29,19 @@ export default function DisplayReservationsPerDayAndLab({
     const filtered = reservations.filter(
       (schedule) => schedule.date === date
     );
+    console.log('reservations filtered', filtered);
     setSchedulesForSelectedLab(filtered);
   }, [date, reservations, schedulesCount]);
 
   useEffect(() => {
     if (error.length === 0) {
       const updated = schedulesForSelectedLab.filter((schedule) => JSON.stringify(schedule) !== JSON.stringify(selectedSchedule));
+      const updated2 = Array.from(updated);
+
+      for (let i = 0; i < updated.length; i++) {
+        if (updated[i] === updated2[i]) updated2[i] = '';
+      }
+      console.log('confirmation', updated2);
       setSchedulesForSelectedLab(updated);
     }
   }, [confirmation]);

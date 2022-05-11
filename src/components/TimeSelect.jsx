@@ -22,8 +22,8 @@ export default function TimeSelect({
     setEndTime("");
   }, [date]);
 
-  useEffect(async () => {
-    const data = await schedules.filter((value) => value.date === date);
+  useEffect(() => {
+    const data = schedules.filter((value) => value.date === date);
     const unavailableStart = [];
     const unavailableEnd = [];
     const startValues = [];

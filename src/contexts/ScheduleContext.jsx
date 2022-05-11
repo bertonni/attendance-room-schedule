@@ -34,15 +34,14 @@ export function ScheduleProvider({ children }) {
         querySnapshot.forEach((doc) => {
           data.push(doc.data());
         });
+        setSchedules(data);
       });
-
-      setSchedules(data);
       console.log("data updated");
 
-      return () => {
-        unsubscribe();
-        console.log("unsubscribed");
-      };
+      // return () => {
+      //   unsubscribe();
+      //   console.log("unsubscribed");
+      // };
     }
   }, [schedulesCount]);
 
