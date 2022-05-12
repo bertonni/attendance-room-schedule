@@ -52,7 +52,6 @@ export default function ViewReservations() {
     }).toString();
 
     const updatedData = schedules.filter((sched) => sched.date === formattedDate);
-    console.log('reservations view', updatedData);
     setReservations(updatedData);
   }, [selectedDate, schedulesCount]);
 

@@ -19,25 +19,15 @@ export default function DisplayReservationsPerDayAndLab({
   const [schedulesForSelectedLab, setSchedulesForSelectedLab] = useState([]);
   const [showConfirmBox, setShowConfirmBox] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState({});
-  const [confirmation, setConfirmation] = useState(false);
 
   const { user } = useAuth();
-  const { schedulesCount, error } = useSchedule();
 
   useEffect(() => {
-    setConfirmation(false);
     const filtered = reservations.filter(
       (schedule) => schedule.date === date
     );
     setSchedulesForSelectedLab(filtered);
-  }, [date, reservations, schedulesCount]);
-
-  useEffect(() => {
-    if (error.length === 0) {
-      const updated = schedulesForSelectedLab.filter((schedule) => JSON.stringify(schedule) !== JSON.stringify(selectedSchedule));
-      setSchedulesForSelectedLab(updated);
-    }
-  }, [confirmation]);
+  }, [date, reservations]);
 
   const removeSchedule = (sched) => {
     setSelectedSchedule(sched);

@@ -17,8 +17,8 @@ export default function StaticDatePickerLandscape() {
   const [startTime, setStartTime] = useState("");
   const [selectedRoom] = useState("SLA-16");
   const [endTime, setEndTime] = useState("");
-  const [minDate, setMinDate] = useState(Temporal.Now.plainDateISO().add({ days: 2 }));
-  const [maxDate] = useState(Temporal.Now.plainDateISO().add({ days: 14 }));
+  const [minDate, setMinDate] = useState(Temporal.Now.plainDateISO().add({ days: 1 }));
+  const [maxDate] = useState(Temporal.Now.plainDateISO().add({ days: 21 }));
   const [open, setOpen] = useState(false);
 
   const { user } = useAuth();
@@ -48,7 +48,7 @@ export default function StaticDatePickerLandscape() {
     );
     if (Temporal.PlainDate.compare(formatted, maxDate) === 1) return true;
     if (Temporal.PlainDate.compare(formatted, minDate) === -1) return true;
-    if (date.getDay() === 0) return true;
+    if (date.getDay() === 0 || date.getDay() === 6) return true;
     return false;
   };
 
