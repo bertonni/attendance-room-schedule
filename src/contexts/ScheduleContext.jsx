@@ -27,15 +27,18 @@ export function ScheduleProvider({ children }) {
 
   useEffect(() => {
     let unsubscribe = () => console.log('test');
-    const q = query(collection(db, "SLA-16"), where("room", "==", "SLA-16"));
-    unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push(doc.data());
+
+    if (user) {
+      const q = query(collection(db, "SLA-16"), where("room", "==", "SLA-16"));
+      unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((doc) => {
+          data.push(doc.data());
+        });
+        setSchedules(data);
+        console.log('updated')
       });
-      setSchedules(data);
-      console.log('updated')
-    });
+    }
     return () => {
       unsubscribe();
     };

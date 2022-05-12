@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useAuth } from "../contexts/AuthContext";
 import ConfirmBox from "./ConfirmBox";
-import { useSchedule } from "../contexts/ScheduleContext";
 
 export default function DisplayReservationsPerDayAndLab({
   reservations,
@@ -18,6 +17,7 @@ export default function DisplayReservationsPerDayAndLab({
 }) {
   const [schedulesForSelectedLab, setSchedulesForSelectedLab] = useState([]);
   const [showConfirmBox, setShowConfirmBox] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState({});
 
   const { user } = useAuth();

@@ -63,7 +63,7 @@ export default function ConfirmBox({ open, close, confirm, schedule }) {
           Você tem certeza que deseja remover este agendamento?
         </DialogContentText>
         <DialogContentText fontWeight={600}>
-          {schedule.lab}: {formattedDate(schedule.date)} -{" "}
+          {formattedDate(schedule.date)} -{" "}
           {schedule.start < 10 ? "0" + schedule.start : schedule.start}h às{" "}
           {schedule.end < 10 ? "0" + schedule.end : schedule.end}h
         </DialogContentText>
