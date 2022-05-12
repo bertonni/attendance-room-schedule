@@ -26,24 +26,22 @@ export function ScheduleProvider({ children }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) {                                                                                                                               
-      const data = [];
-
+    let unsubscribe = () => '';
+    if (user) {
       const q = query(collection(db, "SLA-16"), where("room", "==", "SLA-16"));
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const data = [];
         querySnapshot.forEach((doc) => {
           data.push(doc.data());
         });
         setSchedules(data);
+        console.log('updated')
       });
-      console.log("data updated");
-
-      // return () => {
-      //   unsubscribe();
-      //   console.log("unsubscribed");
-      // };
     }
-  }, [schedulesCount]);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const makeReservation = async (reservation) => {
     try {
