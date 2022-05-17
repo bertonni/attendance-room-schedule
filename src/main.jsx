@@ -65,6 +65,7 @@ let theme = createTheme({
           width: "100%",
           marginLeft: 0,
           maxWidth: "800px",
+          backgroundColor: 'transparent',
           "& div:first-of-type div:first-of-type": {
             width: "100%",
             margin: 0,

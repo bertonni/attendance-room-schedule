@@ -77,6 +77,9 @@ export default function StaticDatePickerLandscape() {
       <PickersDay
         {...pickersDayProps}
         sx={{
+          [`&&.${pickersDayClasses.root}`]: {
+            backgroundColor: 'transparent'
+          },
           [`&&.${pickersDayClasses.selected}`]: {
             backgroundColor: "#349A46",
           },

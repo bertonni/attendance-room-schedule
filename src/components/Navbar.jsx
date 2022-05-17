@@ -29,6 +29,7 @@ export default function Navbar() {
   };
 
   const signOut = () => {
+    handleClose();
     logout();
   };
 
@@ -51,20 +52,23 @@ export default function Navbar() {
             variant="button"
             href="https://reserva-labf1.vercel.app/"
             target={"_blank"}
-            color="black"
             sx={{
               fontWeight: 600,
               fontSize: { xs: 14, sm: 16 },
+              color: "white",
               "&:hover": {
-                color: "green",
+                opacity: 0.8,
               },
+              bgcolor: "#349A46",
+              borderRadius: 1,
+              px: 1,
             }}
           >
             Reservar Lab F1
           </Link>
         </Box>
         {user && (
-          <Tooltip title="Account settings">
+          <Tooltip title="Menu">
             <IconButton
               onClick={handleClick}
               size="small"
@@ -84,12 +88,9 @@ export default function Navbar() {
           open={open}
           id="account-menu"
           onClose={handleClose}
-          onClick={handleClose}
         >
-          <MenuItem>
-            <ListItem>
-              <ListItemText>{user.displayName}</ListItemText>
-            </ListItem>
+          <MenuItem disabled>
+            <ListItemText>{user.displayName}</ListItemText>
           </MenuItem>
           <MenuItem onClick={signOut}>
             <ListItemIcon>

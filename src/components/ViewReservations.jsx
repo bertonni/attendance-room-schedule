@@ -63,6 +63,9 @@ export default function ViewReservations() {
       <PickersDay
         {...pickersDayProps}
         sx={{
+          [`&&.${pickersDayClasses.root}`]: {
+            backgroundColor: 'transparent'
+          },
           [`&&.${pickersDayClasses.selected}`]: {
             backgroundColor: "#29b6f6",
           },
