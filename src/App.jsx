@@ -10,6 +10,7 @@ import StaticDatePickerLandscape from "./components/StaticDatePickerLandscape";
 import ViewReservations from "./components/ViewReservations";
 import { useTheme } from "@mui/material/styles";
 import { useAuth } from "./contexts/AuthContext";
+import Navbar from "./components/Navbar";
 
 function App() {
   const { user, logout, login } = useAuth();
@@ -22,14 +23,14 @@ function App() {
     setSelectedTab(newValue);
   };
 
-  if (!user || !user.email.includes("@igarassu.ifpe.edu.br")){
+  if (!user || !user.email.includes("@igarassu.ifpe.edu.br")) {
     logout();
     return (
       <Box display="flex" flexDirection={"column"} alignItems={"center"} px={4}>
+        <Navbar />
         <Typography
           textAlign={"center"}
-          mt={4}
-          mb={2}
+          mt={2}
           variant={smallScreen ? "h5" : "h4"}
         >
           Reserva - Sala de Atendimento
@@ -40,7 +41,8 @@ function App() {
           mt={4}
           variant={smallScreen ? "h7" : "h6"}
         >
-          Você precisa realizar o login com o e-mail institucional para fazer uma reserva
+          Você precisa realizar o login com o e-mail institucional para fazer
+          uma reserva
         </Typography>
         <Button
           onClick={login}
@@ -61,21 +63,7 @@ function App() {
       height={"100vh"}
       sx={{ px: { xs: "2rem", sm: "3rem", lg: "6rem" } }}
     >
-      {user && (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'center', width: '100%', mt: 2}}>
-          <Typography>
-           Olá, <b>{user.email}</b>
-          </Typography>
-          <Button
-            variant="contained"
-            color="error"
-            size={"small"}
-            onClick={logout}
-          >
-            Sair
-          </Button>
-        </Box>
-      )}
+      <Navbar />
       <Typography
         textAlign={"center"}
         mt={3}
