@@ -12,7 +12,7 @@ export default function TimeSelect({
   endTime,
   setEndTime,
 }) {
-  const { schedules, schedulesCount } = useSchedule();
+  const { schedules } = useSchedule();
   const [unavailableStartTimes, setUnavailableStartTimes] = useState([]);
   const [unavailableEndTimes, setUnavailableEndTimes] = useState([]);
   const [startTimes, setStartTimes] = useState([]);
@@ -58,7 +58,7 @@ export default function TimeSelect({
       }
     }
     setUnavailableEndTimes(unavailableEnd);
-  }, [date, startTime, endTime, lab, schedulesCount]);
+  }, [date, startTime, endTime, lab, schedules]);
 
   return (
     <Box

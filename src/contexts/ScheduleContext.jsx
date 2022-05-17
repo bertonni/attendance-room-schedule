@@ -36,13 +36,12 @@ export function ScheduleProvider({ children }) {
           data.push(doc.data());
         });
         setSchedules(data);
-        console.log('updated')
       });
     }
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   const makeReservation = async (reservation) => {
     try {
